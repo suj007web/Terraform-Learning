@@ -4,6 +4,7 @@ resource "openstack_compute_instance_v2" "test_instance" {
   flavor_name     = var.flavor_name
   key_pair        = openstack_compute_keypair_v2.test_keypair.name
   security_groups = [openstack_networking_secgroup_v2.test_secgroup.name]
+  user_data      = file("./install_nginx.sh")
 
   network {
     uuid = openstack_networking_network_v2.test_network.id
